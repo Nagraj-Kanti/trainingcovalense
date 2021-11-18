@@ -10,4 +10,21 @@ public class HomeController {
 	{
 		return "Home";
 	}
+	
+	@RequestMapping("/employee")
+	public String employee()
+	{
+		return "employee";
+	}
+	
+	@RequestMapping("/department")
+	public String department()
+	{
+		return "department";
+	}
+	
+	
+	
+	
+	
 }

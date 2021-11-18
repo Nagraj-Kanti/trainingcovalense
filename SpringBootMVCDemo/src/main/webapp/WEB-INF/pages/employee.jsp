@@ -4,10 +4,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Home Page</title>
+<title>Insert title here</title>
 </head>
 <body>
-<a href="employee">Employee</a><br><br>
-<a href="department">Department</a>
+<a href="getEmp">Show All Employee</a><br><br>
+
+<a href="regemp">Register Employees</a><br><br>
+
+<a href="/">Home</a><br><br>
+
 </body>
 </html>
