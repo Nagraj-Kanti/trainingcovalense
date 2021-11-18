@@ -63,6 +63,7 @@ public class EmployeeController {
 	{
 		Employee empTOEdit=employeeService.findById(id);
 		ModelAndView modelAndView=new ModelAndView("editEmp", "empToEdit",empTOEdit);
+		modelAndView.addObject("departmentService", departmentService);
 		return modelAndView;
 	}
 	
