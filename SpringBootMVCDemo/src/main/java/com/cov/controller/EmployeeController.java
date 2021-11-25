@@ -15,6 +15,11 @@ import com.cov.beans.Employee;
 import com.cov.exception.InvalidEmployeeIdException;
 import com.cov.service.EmployeeService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
+@Api(value = "API to perform operation on employee",description = "This API provides capabilitis to perform different CRUD operation on Employee")
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -32,6 +37,14 @@ public class EmployeeController {
 		return employee;
 	}
 
+	@ApiResponses(value = 
+		{
+				@ApiResponse(code = 200,message = "Successfully received list of employee"),
+				@ApiResponse(code = 401,message = "You are unauthorized to get list of employee"),
+				@ApiResponse(code = 403,message = "Forbidden"),
+				@ApiResponse(code = 404,message = "Page not found")
+
+		})
 	@GetMapping()
 	public List<Employee> findAll() {
 		logger.info("finding all employees");

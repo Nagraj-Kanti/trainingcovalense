@@ -18,10 +18,16 @@ import com.cov.exception.InvalidDepartmentIdException;
 
 import com.cov.service.DepartmentService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
+@Api(value = "API to perform operation on department",description = "This API provides capabilitis to perform different CRUD operation on Department")
 @RestController
 @RequestMapping("/department")
 public class DepartmentController {
 	static Logger logger = Logger.getLogger(DepartmentController.class);
+	
 	@Autowired
 	DepartmentService departmentService;
 
@@ -33,6 +39,14 @@ public class DepartmentController {
 		return department;
 	}
 
+	@ApiResponses(value = 
+		{
+				@ApiResponse(code = 200,message = "Successfully received list of department"),
+				@ApiResponse(code = 401,message = "You are unauthorized to get list of department"),
+				@ApiResponse(code = 403,message = "Forbidden"),
+				@ApiResponse(code = 404,message = "Page not found")
+
+		})
 	@GetMapping()
 	public List<Department> findAll() {
 		logger.info("finding all departments");
@@ -44,9 +58,9 @@ public class DepartmentController {
 	@PostMapping()
 	public Department insert(@RequestBody Department department) {
 		logger.info("inserting a department with " + department.getName());
-		Department department1= departmentService.save(department);
+		  Department department1=departmentService.save(department);
 		logger.info("inserted  department with " + department1.getName()+" Id "+department1.getId());
-		return department1;
+		return department1; 
 	}
 
 	@PutMapping()
@@ -57,11 +71,4 @@ public class DepartmentController {
 		return department1;
 	}
 
-	@DeleteMapping("/{id}")
-	public Department delete(@PathVariable int id) throws InvalidDepartmentIdException {
-		logger.info("deleting a department with id " + id);
-		Department department1= departmentService.delete(id);
-		logger.info("deleted  department with id " + department1.getId()+" name "+department1.getName());
-		return department1;
-	}
 }
